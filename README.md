@@ -130,3 +130,23 @@ Et la thématique serait : Cosmologie
 ## 4. WireFrames
 
 ![Screen 2](docs/oQUIz_screen_2.png)
+
+### [Page d'accueil](https://wireframe.cc/V5m8ot)
+
+![Wireframe Accueil](docs/wireframe_accueil.png)
+
+### [Page de login](https://wireframe.cc/wvwa2y)
+
+![Wireframe Login](docs/wireframe_login.png)
+
+### [Page de détail](https://wireframe.cc/hbrvgq)
+
+![Wireframe Détail](docs/wireframe_detail.png)
+
+### [Page de résultat](https://wireframe.cc/r96bdA)
+
+![Wireframe Resultat](docs/wireframe_resultat.png)
+
+### [Page de liste des sujets](https://wireframe.cc/8nA9pN)
+
+![Wireframe Resultat](docs/wireframe_liste_sujets.png)
