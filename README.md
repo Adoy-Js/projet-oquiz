@@ -4,11 +4,11 @@ Le client *Philippe*, demande à son assistant ( le Prof ) de lui créer un nouv
 
 A première vue, c'est un jeu qui va comporter des quizzes avec des questions suivant des thématiques. On pourra répondre aux quizzes, avec par exemple un score à la fin. Il y aura plusieurs sujets à ces quizzes.
 
-On sera dans un premier utilisateur, donc on ne pourra que répondre aux quizz si on est connecté
+On sera dans un premier temps, un utilisateur, donc on ne pourra que répondre aux quizz si on est connecté
 
 On nous a dit que l'administration dans un premier temps se ferait par phpMyAdmin ( Qui est une interface pour modifier la BDD )
 
-## 1. Prise de note
+## 1. Prise de notes
 
 Quest-ce que **doit faire** et quest-ce que **ne doit pas faire** notre application, et en fonction en définira des uses cases.
 
@@ -60,7 +60,9 @@ Et la thématique serait : Cosmologie
 ### En tant que visiteur je veux
 
 - Accèder à un formulaire de création de compte
+- Pouvoir s'inscrire
 - Accèder à un formulaire de connexion afin de m'authentifier
+- Pouvoir m'authentifier
 - Accèder à une page d'accueil avec des quizzes
 - Pouvoir consulter la liste des quizzes afin d'un selectionner un
 - Pouvoir consulter un quizz afin de lire les questions
@@ -68,8 +70,8 @@ Et la thématique serait : Cosmologie
 - Cliquer sur le nom d'un auteur pour afficher tous ses quizzes
 - Pourvoir consulter la liste des thèmes afin de lister les quizzes par thèmes
 - Pouvoir consulter la liste des quizzes par thème
-- Pouvoir visualiser le sujet de chaque question sur la page du quizz
-- Pouvoir visualiser la difficulté sur chaque question
+- Pouvoir visualiser les sujet du quizz sur la page du quizz
+- Pouvoir visualiser la difficulté de chaque question
 
 ### En tant que membre je veux
 
@@ -79,7 +81,7 @@ Et la thématique serait : Cosmologie
 - Pouvoir visualiser la correction aprés avoir répondu
 - Accéder à ma page de profil afin de consulter mes données
 - ( Si on a le temps ) Pouvoir créer quizz
-- ( Si on a le temps ) Pouvoir créer des questions afin de les liers à un quizz
+- ( Si on a le temps ) Pouvoir créer des questions afin de les lier à un quizz
 - ( Si on a le temps ) Pouvoir avoir accès à l'historique des mes quizzes, de mes résultats.
 
 ### En tant qu'admin ( et si on a le temps )
@@ -90,3 +92,35 @@ Et la thématique serait : Cosmologie
 - CRUD d'un thème
 - CRUD d'un quizz
 - CRUD d'une question
+
+
+## 3. Les sprints
+| En tant que | J'ai besoin de ... | Commentaire | Sprint |
+|---|---|---|---|
+| Visiteur | Accèder à un formulaire de création de compte | | 1 |
+| Visiteur | Accèder à un formulaire de connexion afin de m'authentifier | | 1 |
+| Visiteur | Accèder à une page d'accueil avec des quizzes | | 1 |
+| Visiteur | Pouvoir consulter la liste des quizzes afin d'un selectionner un | | 1 |
+| Visiteur | Pouvoir consulter un quizz afin d'accéder aux questions | | 1 |
+| Visiteur | Avoir un bouton de redirection vers la page de connexion si je consulte un quizz | | 1 |
+| Visiteur | Pourvoir consulter la liste des thèmes afin de lister les quizzes par thèmes  | | 1 |
+| Visiteur | Pouvoir consulter la liste des quizzes par thème | | 1 |
+| Visiteur | Pouvoir visualiser les sujet du quizz sur la page du quizz | | 1 |
+| Visiteur | Pouvoir visualiser la difficulté de chaque question | | 1 |
+| Visiteur | Pouvoir se connecter | | 2 |
+| Visiteur | Pouvoir s'inscrire | | 2 |
+| Visiteur | Cliquer sur le nom d'un auteur pour afficher tous ses quizzes | | 2 |
+| Membre | Accéder à une page de déconnexion | | 2 |
+| Membre | Pouvoir répondre à un quizz | | 2 |
+| Membre | Pouvoir visualiser/interpréter le score aprés avoir répondu | | 2 |
+| Membre | Pouvoir visualiser la correction aprés avoir répondu | | 2 |
+| Membre | Accéder à ma page de profil afin de consulter mes données | | 2 |
+| Membre | ( Si on a le temps ) Pouvoir créer quizz | | 3 |
+| Membre | ( Si on a le temps ) Pouvoir créer des questions afin de les lier à un quizz | | 3 |
+| Membre | ( Si on a le temps ) Pouvoir avoir accès à l'historique des mes quizzes, de mes résultats. | | 3 |
+| Admin | Accéder à mon espace d'administration | | 4 |
+| Admin | Valider un quizz créé par un utilisateur | | 4 |
+| Admin | CRUD d'un utilisateur | | 4 |
+| Admin | CRUD d'un thème | | 4 |
+| Admin | CRUD d'un quizz | | 4 |
+| Admin | CRUD d'une question | | 4 |
