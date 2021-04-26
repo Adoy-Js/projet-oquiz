@@ -34,7 +34,59 @@ Et la thématique serait : Cosmologie
 
 - Noter un quizz ( juger si il était bien ou pas )
 - Mettre en avant les quizzes bien notés
-  
+- Mesurer le temps de réponse à un quiz ( suivant le niveau de difficutés ) ou gérer un chronomètre par question
+- En fonction de la difficulté on pourrait avoir plusieurs bonnes réponses
+- Avoir une page de présentation
+- Avoir une page de recherche
+- Permettre de s'inscrire à une newsletter
+- Permettre de proposer des quizzes recommandés ( en fonction des thèmes souvent utilisé par exemple )
+
 **Notes au sujet de la structure des données :**
 
-- Chaque quizz a un auteur, contenu, titre, niveau
+- Chaque quizz a :
+  - un auteur
+  - titre
+  - des questions
+  - un thème
+  - des sujets ( tags )
+
+- Chaque question :
+  - difficulté
+  - a une réponse
+  - plusieurs propositions
+
+## 2. Uses Cases
+
+### En tant que visiteur je veux
+
+- Accèder à un formulaire de création de compte
+- Accèder à un formulaire de connexion afin de m'authentifier
+- Accèder à une page d'accueil avec des quizzes
+- Pouvoir consulter la liste des quizzes afin d'un selectionner un
+- Pouvoir consulter un quizz afin de lire les questions
+- Avoir un bouton de redirection vers la page de connexion si je consulte un quizz
+- Cliquer sur le nom d'un auteur pour afficher tous ses quizzes
+- Pourvoir consulter la liste des thèmes afin de lister les quizzes par thèmes
+- Pouvoir consulter la liste des quizzes par thème
+- Pouvoir visualiser le sujet de chaque question sur la page du quizz
+- Pouvoir visualiser la difficulté sur chaque question
+
+### En tant que membre je veux
+
+- Accéder à une page de déconnexion
+- Pouvoir selectionner un quizz afin d'y répondre
+- Pouvoir visualiser le score aprés avoir répondu
+- Pouvoir visualiser la correction aprés avoir répondu
+- Accéder à ma page de profil afin de consulter mes données
+- ( Si on a le temps ) Pouvoir créer quizz
+- ( Si on a le temps ) Pouvoir créer des questions afin de les liers à un quizz
+- ( Si on a le temps ) Pouvoir avoir accès à l'historique des mes quizzes, de mes résultats.
+
+### En tant qu'admin ( et si on a le temps )
+
+- Accéder à mon espace d'administration
+- Valider un quizz créé par un utilisateur
+- CRUD d'un utilisateur
+- CRUD d'un thème
+- CRUD d'un quizz
+- CRUD d'une question
