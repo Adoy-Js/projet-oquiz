@@ -1,5 +1,15 @@
 # OQuiz
 
+## Challenge jour 1
+
+En utilisant l'analyse préliminaire de la BDD, le MCD, et la [fiche récap MLD](https://kourou.oclock.io/ressources/fiche-recap/mld/), écrire le MLD de l'application !
+
+### Bonus
+
+Écrire le fichier SQL pour créer les tables listées dans le MLD.
+
+---
+
 ![Screen 1](docs/oQUIz_screen_1.png)
 
 Le client *Philippe*, demande à son assistant ( le Prof ) de lui créer un nouveau projet de Quizz. Le prof brainstorm avec son équipe de dev pour créer le projet. On analyse donc les spécificités.
@@ -150,3 +160,69 @@ Et la thématique serait : Cosmologie
 ### [Page de liste des sujets](https://wireframe.cc/8nA9pN)
 
 ![Wireframe Resultat](docs/wireframe_liste_sujets.png)
+
+## 5. Le MCD
+
+Commençons a identifier les différentes entités de notre système de données.
+
+- quizz
+- question
+- reponse ( = proposition )
+- tag ( = sujet )
+- niveau
+- utilisateur ( = auteurs, en fait un auteur c'est utilisateur qui a créé un quizz )
+
+Puis identifions les propriétés de ces entités
+
+- quizz
+  - titre
+  - thème
+  - description
+- question
+  - description
+  - anecdote
+  - wiki
+- reponse ( = proposition )
+  - description
+- tag ( = sujet )
+  - nom
+- niveau
+  - nom
+- utilisateur ( = auteurs, un auteur est utilisateur qui a créé un quizz )
+  - nom
+  - prénom
+  - email
+  - mot de passe
+
+Pour construire le MCD il vaut mieux s'inspirer de la [fiche récap kourou](https://kourou.oclock.io/ressources/fiche-recap/mcd-modele-conceptuel-de-donnees/) :
+
+:warning: Alerte vocabulaire :
+
+- Le **le déterminant (ou identifiant, discriminant)** c'est le champs souligné, c'est ce qui identifiera le mieux l'entité ( attention ce qui identifie, c'est pas forcément un identifiant )
+- Les **attributs** sont les données qui concernent les entités, ce qui les définissent
+- Les **entités**, se sont les différents objets qui structurent notre application
+- Les **relations**, ce sont les différents liens entre les entités
+- Les **cardinalités** ce sont le nombre de relation minimum et maximum entre les entités, on vient comptabiliser les différentes relations possible entre 2 entités.
+
+Pour créer le MCD autant aller voir la fiche récap prévu à cet effet : https://kourou.oclock.io/ressources/fiche-recap/mocodo/#relations
+
+Le MCD : 
+
+```
+QUIZZ: titreQuizz, thème, descriptionQuizz
+QUESTION: descriptionQuest, anecdote, wiki
+REPONSE: descriptionResp
+TAG: nomTag
+NIVEAU: nomNiveau
+UTILISATEUR: _nom, prénom, _email, mot de passe
+
+DEFINIR, 11 QUESTION, 0N NIVEAU
+COMPOSER, 0N QUIZZ, 11 QUESTION
+POSSEDER, 0N QUESTION, 11 REPONSE
+VALIDER, 01 QUESTION, 01 REPONSE
+CREER, 0N UTILISATEUR, 11 QUIZZ
+APPARTENIR, 0N TAG, 0N QUIZZ
+```
+
+[Le détail ordonné du .mcd](docs/MCD/Quizz.mcd)  
+![MCD](docs/MCD/Quizz.svg);
