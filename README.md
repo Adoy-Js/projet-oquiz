@@ -1,5 +1,7 @@
 # OQuiz
 
+![Screen 1](docs/oQUIz_screen_1.png)
+
 Le client *Philippe*, demande à son assistant ( le Prof ) de lui créer un nouveau projet de Quizz. Le prof brainstorm avec son équipe de dev pour créer le projet. On analyse donc les spécificités.
 
 A première vue, c'est un jeu qui va comporter des quizzes avec des questions suivant des thématiques. On pourra répondre aux quizzes, avec par exemple un score à la fin. Il y aura plusieurs sujets à ces quizzes.
@@ -124,3 +126,7 @@ Et la thématique serait : Cosmologie
 | Admin | CRUD d'un thème | | 4 |
 | Admin | CRUD d'un quizz | | 4 |
 | Admin | CRUD d'une question | | 4 |
+
+## 4. WireFrames
+
+![Screen 2](docs/oQUIz_screen_2.png)
