@@ -10,6 +10,8 @@ En utilisant l'analyse préliminaire de la BDD, le MCD, et la [fiche récap MLD]
 
 ---
 
+## Détail du projet
+
 ![Screen 1](docs/oQUIz_screen_1.png)
 
 Le client *Philippe*, demande à son assistant ( le Prof ) de lui créer un nouveau projet de Quizz. Le prof brainstorm avec son équipe de dev pour créer le projet. On analyse donc les spécificités.
@@ -107,6 +109,9 @@ Et la thématique serait : Cosmologie
 
 
 ## 3. Les sprints
+
+Vous pouvez trouver le [trello ici](https://trello.com/b/YaDGQf8c/sinbad-gdp-oquiz)
+
 | En tant que | J'ai besoin de ... | Commentaire | Sprint |
 |---|---|---|---|
 | Visiteur | Accèder à un formulaire de création de compte | | 1 |
