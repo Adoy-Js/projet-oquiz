@@ -1,0 +1,8 @@
+QUIZZ(id, titreQuizz, thème, descriptionQuizz, #utilisateur(id))
+QUESTION(id, descriptionQuest, anecdote, wiki, #quizz(id), #reponse(id), #niveau(id))
+REPONSE(id, descriptionResp, #question(id))
+TAG(id, nomTag)
+NIVEAU(id, nomNiveau)
+UTILISATEUR(id, nom, prénom, email, mot de passe)
+
+QUIZZ AVOIR TAG(#quizz(id), #tag(id))
