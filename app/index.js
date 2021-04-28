@@ -1,13 +1,9 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
-const dataMapper = require('./dataMapper');
+const Tag = require('./models/Tag');
 
-// Solution datamapper
-dataMapper.getAllLevels((err, levels) => {
-  console.log("getAllLevels Callback", {err, levels})
-});
-// Solution datamapper
-dataMapper.getOneLevel(1123123, (err, level) => {
-  console.log("getOneLevel Callback", {err, level})
+// Solution model
+Tag.findAll((err, tags) => {
+  console.log("findAll Callback", {err, tags})
 });
