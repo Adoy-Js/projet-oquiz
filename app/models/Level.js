@@ -15,6 +15,7 @@ class Level extends CoreModel {
   get name() {
     return this._name;
   }
+
 }
 
 module.exports = Level;
