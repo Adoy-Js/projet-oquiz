@@ -1,0 +1,27 @@
+{
+  "name": "S05E01-Oquizz-slampazona",
+  "version": "1.0.0",
+  "description": "## Challenge jour 2 : Le début du commencement",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/O-clock-Sinbad/S05E01-Oquizz-slampazona.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/O-clock-Sinbad/S05E01-Oquizz-slampazona/issues"
+  },
+  "homepage": "https://github.com/O-clock-Sinbad/S05E01-Oquizz-slampazona#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "pg": "^8.6.0"
+  }
+}
