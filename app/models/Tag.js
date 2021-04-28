@@ -76,7 +76,7 @@ class Tag extends CoreModel {
    * Fonction permettant de créer le tag en BDD
    * @param {func} callback 
    */
-  create(callback) {
+   create(callback) {
     // On créé la requete d'insertion de cette instance en cours en BDD
     const query = {
       // Sachant que nous ne connaissons pas l'id à l'avance
@@ -118,6 +118,48 @@ class Tag extends CoreModel {
       return callback(null, this)
     });
   }
+
+  /**
+   * Fonction permettant de modifier un tag en BDD
+   * @param {func} callback 
+   */
+   update(callback) {
+    // On créé la requete de modification de cette instance en cours en BDD
+    const query = {
+     text: `UPDATE "tag" SET name = $1 WHERE "id" = $2`,
+      values: [this.name, this.id]
+    }
+
+    // On execute la requete SQL de modification du TAG
+    database.query(query, (err, result) => {
+      // Si y'a une erreur, l'entrée n'est pas surement modifiée, donc on stop ici
+      if (err){
+        return callback(err, null);
+      }
+      // Si ça c'est bien passé on a pas créé de nouvelle 
+      // Donc on renvoie la même
+      return callback(null, this)
+    });
+  }
+
+  delete(callback) {
+    const query = {
+      text: `DELETE FROM "tag" WHERE id = $1;`,
+      values: [this.id]
+    };
+    database.query(query, (err, result) => {
+      if (err) {
+        callback(err, false);
+      }
+      if (result.rowCount) {
+        // au moins une ligne a été supprimé => tout va bien !
+        callback(null, true);
+      } else {
+        callback('Delete did not target any rows', false);
+      }
+    });
+  };
+
 }
 
 module.exports = Tag;

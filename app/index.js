@@ -26,4 +26,16 @@ const tagToCreate = new Tag({
 tagToCreate.create((err, createdTag) => {
   // Ici l'insertion est terminée
   // createdTag est littéralement tagToCreate
+  console.log("createdTag", createdTag);
+  createdTag.name = 'Updated Name';
+  createdTag.update((err, updatedTag) => {
+    console.log('updatedTag', updatedTag);
+    console.log('tagToCreate === createdTag', tagToCreate === createdTag); // true
+    console.log('createdTag === updatedTag', tagToCreate === updatedTag); // true
+
+    // Finalement on décide de la supprimer
+    updatedTag.delete((err, success) => {
+      console.log("Tag deleted ? ", success);
+    });
+  });
 });
