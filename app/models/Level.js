@@ -5,7 +5,7 @@ class Level extends CoreModel {
 
   constructor(obj){
     super(obj);
-    this._name = obj.name;
+    this.name = obj.name;
   }
 
   set name(name) {
