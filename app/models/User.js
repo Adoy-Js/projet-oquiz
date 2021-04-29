@@ -2,6 +2,9 @@ const CoreModel = require('./CoreModel');
 const database = require('../database');
 
 class User extends CoreModel {
+
+  static tableName = 'user';
+
   _email;
   _password;
   _firstname;
@@ -53,36 +56,6 @@ class User extends CoreModel {
 
   get fullName() {
     return this.firstname + ' ' + this.lastname
-  }
-
-  static findAll(callback) {
-    // On déclare la query SQL
-    let query = {
-      text: `SELECT * FROM "user";`
-    };
-
-    // Puis on l'execute
-    database.query(query, (err, result) => {
-      // Si j'ai une erreur on stop et on déclenche le callback
-      // avec l'erreur
-      if (err) {
-        return callback(err, null);
-      }
-
-      // Si j'ai pas eu d'erreur
-      // On va préparer la donnée, on a une tableau d'objet simple
-      // On veut avoir un tableau d'instances d'utilisateurs
-      // On récupère les rows
-      const rows = result.rows;
-      // Puis on les parcours afin de retourner un nouveau tableau d'instance
-      const users = rows.map((row) => {
-        return new User(row);
-      });
-
-      // On appel la fonction de retour pour retourner le résultat
-      // au controller
-      return callback(null, users);
-    });
   }
 
   static findById(id, callback) {

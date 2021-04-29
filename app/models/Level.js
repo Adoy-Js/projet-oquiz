@@ -1,6 +1,9 @@
 const CoreModel = require('./CoreModel');
 
 class Level extends CoreModel {
+
+  static tableName = "level";
+
   _name;
 
   constructor(obj){
