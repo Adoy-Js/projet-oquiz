@@ -1,4 +1,5 @@
 const database = require('../database');
+const Question = require('./Question');
 
 class CoreModel {
   _id = null;
@@ -100,11 +101,178 @@ class CoreModel {
   }
 
   create(callback) {
-    console.log("INSTANCE, this dans le core model", this);
-    // const query = {
-    //   text: `SELECT * FROM "${tableName}"`
-    // }
+        
+    let tbKeys = [];
+    let tbValues = [];
+    let placeHolders = [];
 
+    // On récupère la liste des noms des propriétés
+    let propertiesName = Object.getOwnPropertyNames(this);
+    
+    // On veut pas l'id, puisqu'il va être auto calculé par la BDD
+    // donc on filtre tous les noms de propriété, en gardant tout sauf l'id
+    propertiesName = propertiesName.filter((property) => {
+      if (property === "_id"){
+        return false;
+      }
+      else {
+        return true;
+      }
+    });
+
+    // Puis on va remplir nos variables pour la requete SQL
+    propertiesName = propertiesName.forEach((property, index) => {
+      // Mais elles ont toutes un underscore, ca va nous géner
+      // On va donc créer un nouveau tableau avec ces données mais
+      // sans les underscores
+      tbKeys.push(`"${property.substring(1)}"`);
+
+      // Récupération de la valeur de notre propriété
+      tbValues.push(this[property]);
+
+      // On ajoute le placeholder
+      placeHolders.push('$' + (index + 1))
+    })
+
+    const query = {
+      text: `
+        INSERT INTO "${this.constructor.tableName}"
+        (${tbKeys.join(' ,')})
+        VALUES
+        (${placeHolders.join(' ,')})
+        RETURNING id;
+        `,
+      values: tbValues
+    }
+
+    // Puis on l'execute
+    database.query(query, (err, result) => {
+      // Si j'ai une erreur on stop et on déclenche le callback
+      // avec l'erreur
+      if (err) {
+        return callback(err, null);
+      }
+
+      // Si j'ai pas eu d'erreur
+      // Je récupère l'id qui est dispo grace au RETURNING id de la requete
+      const id = result?.rows?.[0]?.id;
+
+      // Si j'ai bien un id
+      if (id) {
+        // Je viens mettre à jour mon instance pour y mettre l'id dedans*
+        this.id = id;
+        
+        // On appel la fonction de retour pour retourner le résultat
+        // au controller
+        return callback(null, this);
+      }
+      // Si j'ai pas trouvé l'utilisateur
+      else {
+        // Je renvoie une erreur
+        return callback(new Error(this.constructor.name + ' not created'), null);
+      }
+    });
+  }
+
+  update(callback) {
+        
+    let tbKeysPlaceholder = [];
+    let tbValues = [];
+
+    // On récupère la liste des noms des propriétés
+    let propertiesName = Object.getOwnPropertyNames(this);
+    
+    // On veut pas l'id, puisqu'il va être nous servir dans le where et qu'on veut pas le changer
+    // donc on filtre tous les noms de propriété, en gardant tout sauf l'id
+    propertiesName = propertiesName.filter((property) => {
+      if (property === "_id"){
+        return false;
+      }
+      else {
+        return true;
+      }
+    });
+
+    // Puis on va remplir nos variables pour la requete SQL
+    propertiesName = propertiesName.forEach((property, index) => {
+      // Mais elles ont toutes un underscore, ca va nous géner
+      // On va donc créer un nouveau tableau avec ces données mais
+      // sans les underscores
+      // Génère une ligne du style
+      //     "email" = $1
+      tbKeysPlaceholder.push(`"${property.substring(1)}" = $${index + 1}`);
+
+      // Récupération de la valeur de notre propriété
+      tbValues.push(this[property]);
+    })
+
+    // L'id ne faisant pas partit de l'opération, on le rajoute au tableau de values
+    // en prévention du where qui suit ci-dessous
+
+    tbValues.push(this['_id']);
+    const query = {
+      text: `
+      UPDATE "${this.constructor.tableName}"
+      SET 
+      ${tbKeysPlaceholder.join(', ')}
+      WHERE id = $${tbKeysPlaceholder.length+1};
+      `,
+      values: tbValues
+    }
+
+    console.log("query", query);
+
+    // Puis on l'execute
+    database.query(query, (err, result) => {
+      // Si j'ai une erreur on stop et on déclenche le callback
+      // avec l'erreur
+      if (err) {
+        return callback(err, null);
+      }
+
+      // Si j'ai pas eu d'erreur
+      // Je vérifie qu'il y a bien eu une modification
+      if (result.rowCount) {
+        // On appel la fonction de retour pour retourner le résultat
+        // au controller
+        return callback(null, this);
+      }
+      // Si j'ai pas eu de modification
+      else {
+        // Je renvoie une erreur
+        return callback(new Error(this.constructor.name + ' not updated'), this);
+      }
+    });
+  }
+
+  delete(callback) {
+    // On déclare la query SQL
+    let query = {
+      text: `DELETE FROM "${this.constructor.tableName}" WHERE id = $1;`,
+      values: [this.id]
+    };
+
+    // Puis on l'execute
+    database.query(query, (err, result) => {
+      // Si j'ai une erreur on stop et on déclenche le callback
+      // avec l'erreur
+      if (err) {
+        return callback(err);
+      }
+
+      // Si j'ai pas eu d'erreur
+      // Je vérifie qu'il y a bien eu une suppression
+      if (result.rowCount) {
+        // On appel la fonction de retour pour retourner le résultat
+        // au controller
+        return callback(null);
+      }
+      // Si j'ai pas eu de suppression
+      else {
+        // Je renvoie une erreur
+        return callback(new Error(this.constructor.name + ' not delete'));
+      }
+    });
   }
 }
 
