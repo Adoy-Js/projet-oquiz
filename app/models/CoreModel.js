@@ -39,9 +39,7 @@ class CoreModel {
       text: `SELECT * FROM "${this.tableName}"`
     }
 
-    console.log(this, query);
-
-        // Puis on l'execute
+    // Puis on l'execute
     database.query(query, (err, result) => {
       // Si j'ai une erreur on stop et on déclenche le callback
       // avec l'erreur
@@ -62,6 +60,42 @@ class CoreModel {
       // On appel la fonction de retour pour retourner le résultat
       // au controller
       return callback(null, data);
+    });
+  }
+
+  static findOne(id, callback) {
+    const query = {
+      text: `SELECT * FROM "${this.tableName}" WHERE "id" = $1`,
+      values: [id]
+    }
+
+    // Puis on l'execute
+    database.query(query, (err, result) => {
+      // Si j'ai une erreur on stop et on déclenche le callback
+      // avec l'erreur
+      if (err) {
+        return callback(err, null);
+      }
+
+      // Si j'ai pas eu d'erreur
+      // On va préparer la donnée, on a une tableau d'objet simple
+      // On veut avoir une d'instances
+      // On récupère la première row
+      const row = result?.rows?.[0];
+      
+      // Si j'ai bien trouvé mon enregistrement
+      if (row) {
+        const datum = new this(row);
+        
+        // On appel la fonction de retour pour retourner le résultat
+        // au controller
+        return callback(null, datum);
+      }
+      // Si j'ai pas trouvé l'enregistrement
+      else {
+        // Je renvoie une erreur
+        return callback(new Error(this.name + ' not found'), null);
+      }
     });
   }
 
