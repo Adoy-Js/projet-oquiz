@@ -4,7 +4,7 @@
 
 Les méthodes Active Record sont maintenant factorisé directement dans CoreModel !!
 
-Commencer par vérifier que tout fonctionne en écrivant quelques tests dans `test.js`, par exemple : 
+Commencer par vérifier que tout fonctionne en écrivant quelques tests dans `index.js`, par exemple : 
 - Trouver tous les User.
 - Trouver la question dont l'id est 3.
 - Créer un Level avec le nom "très difficile" et l'insérer en BDD.
