@@ -1,41 +1,69 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
-const Tag = require('./models/Tag');
+const User = require('./models/User');
 
-// Solution model
-// Tag.findAll((err, tags) => {
-//   console.log("findAll Callback", {err, tags})
-// });
+// Récupération de la liste des utilisateurs
+/* User.findAll((errFindAll, users) => {
+  if (errFindAll){
+    console.error('errFindAll', errFindAll);
+  }
+  console.log("Liste des users", users);
+}); */
 
-// Tag.findOne(2, (err, tag) => {
-//   console.log("findOne Callback", {err, tag})
-// });
+// Récupération d'un utilisateur
+/* User.findById(3, (errFindOne, user) => {
+  if (errFindOne){
+    console.error('errFindOne', errFindOne);
+  }
+  console.log("Recherche de l'user id 3", user);
+}); */
 
-// J'ai besoin de créer un tag, je créé donc une nouvelle instance
-// de mon tag, et je lui donne un nom
-// pas d'id puisque il existe pas encore en BDD, on va laisser
-// pg gérer l'auto incrémentation de l'id, c'est lui tout seul
-// qui va me remplir l'id dans mon instance
-const tagToCreate = new Tag({
-  name: 'Mon nouveau Tag',
+// Création d'un utilisateur
+/* const userToCreate = new User({
+  email: 'superman@hero.io',
+  password: 'jesuisclarkkent',
+  firstname: 'Clark',
+  lastname: 'Kent'
 });
 
-// Instance crée, j'ai donc maintenant besoin de l'insérer en BDD
-// Je déclenche une fonction qui permet de le faire
-tagToCreate.create((err, createdTag) => {
-  // Ici l'insertion est terminée
-  // createdTag est littéralement tagToCreate
-  console.log("createdTag", createdTag);
-  createdTag.name = 'Updated Name';
-  createdTag.update((err, updatedTag) => {
-    console.log('updatedTag', updatedTag);
-    console.log('tagToCreate === createdTag', tagToCreate === createdTag); // true
-    console.log('createdTag === updatedTag', tagToCreate === updatedTag); // true
+userToCreate.insert((errCreate, userCreated) => {
+  if (errCreate){
+    console.error('errCreate', errCreate);
+  }
+  console.log("Utilisateur inséré", userCreated);
+}); */
 
-    // Finalement on décide de la supprimer
-    updatedTag.delete((err, success) => {
-      console.log("Tag deleted ? ", success);
-    });
+// Modification d'un utilisateur
+/* User.findById(4, (errFind, user) => {
+  if (errFind){
+    return console.error("ErrFind", errFind);
+  }
+  else if (!user){
+    return console.error('User not found');
+  }
+  user.firstname = 'Lex';
+  user.lastname = 'Luthor';
+  user.update((errUpdate, userUpdated) => {
+    if (errUpdate){
+      console.error('errUpdate', errUpdate);
+    }
+    console.log("Utilisateur modifié", userUpdated);
   });
-});
+}) */
+
+// Suppression d'un utilisateur
+User.findById(4, (errFind, user) => {
+  if (errFind){
+    return console.error("ErrFind", errFind);
+  }
+  else if (!user){
+    return console.error('User not found');
+  }
+  user.delete((errDelete) => {
+    if (errDelete){
+      console.error('errDelete', errDelete);
+    }
+    console.log("Utilisateur supprimé");
+  });
+})
