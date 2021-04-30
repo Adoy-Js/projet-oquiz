@@ -42,18 +42,18 @@ Tag.findByPk(2)
 
 //************* Test des relations **************/
 
+// https://sequelize.org/master/manual/eager-loading.html#including-everything
 // Récupération d'un utilisateur ainsi que de ses quizzes
-User.findOne({ include: 'quizzes' }) // On utilise l'alias qu'on avait donné à la relation
+User.findOne({ include: {// Je veux include l'association quizzes
+  association: 'quizzes',// Mais dans cette association je veux aussi les tags ET les questions
+  include: ['tags', {
+    association: 'questions',// Mais dans les questions je veux aussi pour chaque question la bonne réponse associée
+    include: 'good_answer'
+  }]
+}}) // On utilise l'alias qu'on avait donné à la relation
 .then((user) => {
-  console.log(user);
-  // Si je veux récupérer tous les quizzes de cet utilisateur
-  // J'ai qu'a faire : 
-  // console.log('user.quizzes', user.quizzes);
-});
-
-
-// Récupération d'un utilisateur ainsi que de ses quizzes
-Quiz.findOne({ include: 'questions' }) // On utilise l'alias qu'on avait donné à la relation
-.then((quiz) => {
-  console.log(quiz);
+  console.log(
+    "La réponse à la première question, du premier quiz du premier utilisateur trouvé",
+    user.quizzes[0].questions[0].good_answer.description
+  );
 });
