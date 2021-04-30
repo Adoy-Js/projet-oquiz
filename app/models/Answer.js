@@ -1,42 +1,21 @@
-const CoreModel = require('./CoreModel');
+const { DataTypes, Model } = require('sequelize');
+const sequelize = require('../database');
 
-class Answer extends CoreModel {
+class Answer extends Model {}
 
-  static tableName = 'answer';
-
-  _description;
-  _question_id;
-
-  // Création du constructor pour initialiser les données
-  constructor(obj) {
-    super(obj);
-    this.description = obj.description;
-    this.question_id = obj.question_id;
-  }
-
-  // Setter / Getter de description
-
-  set description(description) {
-    this._description = description;
-  }
-
-  get description() {
-    return this._description;
-  }
-
-  // Setter / Getter de question_id
-
-  set question_id(question_id) {
-    if (isNaN(parseInt(question_id, 10))){
-      throw new Error('Id must be an integer');
-    }
-    this._question_id = parseInt(question_id, 10);
-  }
-
-  get question_id() {
-    return this._question_id;
-  }
-}
+Answer.init({
+  // On décrit les attributs du model
+  // La colonne description est un string
+  // qui peut être nullable
+  description: {
+    type: DataTypes.STRING
+  },
+}, {
+  // Autre options du modeles
+  sequelize, // On a besoin de donner l'instance de la connexion
+  timestamps: false, // Pour ne pas avoir les champs createdAt et updatedAt
+  tableName: 'answer' // Pour imposer un nom de table, sinon il prend le model au pluriel par défaut
+});
 
 // Puis on export pour pouvoir le require là ou on va l'instancier
 module.exports = Answer;

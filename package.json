@@ -23,6 +23,8 @@
   "homepage": "https://github.com/O-clock-Sinbad/S05E01-Oquizz-slampazona#readme",
   "dependencies": {
     "dotenv": "^8.2.0",
-    "pg": "^8.6.0"
+    "pg": "^8.6.0",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.6.2"
   }
 }

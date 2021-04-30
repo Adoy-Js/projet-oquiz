@@ -1,8 +1,8 @@
-const { Client } = require('pg');
+const { Sequelize } = require('sequelize');
 
-const PGURL = process.env.PG_URL;
-const client = new Client(PGURL);
+// On créé l'instance de la BDD
+const sequelize = new Sequelize(process.env.PG_URL);
 
-client.connect();
+// Et on l'export
+module.exports = sequelize;
 
-module.exports = client;
