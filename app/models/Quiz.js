@@ -1,44 +1,22 @@
-const CoreModel = require('./CoreModel');
+const { DataTypes, Model } = require('sequelize');
+const sequelize = require('../database');
 
-class Quiz extends CoreModel {
+class Quiz extends Model {}
 
-  static tableName = 'quiz';
-  
-  _title;
-  _description;
-  _user_id;
+Quiz.init({
+  title: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  description: {
+    type: DataTypes.STRING,
+  },
+}, {
+  // Autre options du modeles
+  sequelize, // On a besoin de donner l'instance de la connexion
+  timestamps: false, // Pour ne pas avoir les champs createdAt et updatedAt
+  tableName: 'quiz' // Pour imposer un nom de table, sinon il prend le model au pluriel par défaut
+});
 
-  constructor(obj){
-    super(obj);
-    this.title = obj.title;
-    this.description = obj.description;
-    this.user_id = obj.user_id;
-  }
-
-  get title() {
-    return this._title;
-  }
-
-  set title(title) {
-    this._title = title;
-  }
-
-  get description() {
-    return this._description;
-  }
-
-  set description(description) {
-    this._description = description;
-  }
-
-  get user_id() {
-    return this._user_id;
-  }
-
-  set user_id(user_id) {
-    this._user_id = user_id;
-  }
-
-}
-
+// Puis on export pour pouvoir le require là ou on va l'instancier
 module.exports = Quiz;
