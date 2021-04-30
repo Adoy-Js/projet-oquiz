@@ -1,5 +1,4 @@
 const database = require('../database');
-const Question = require('./Question');
 
 class CoreModel {
   _id = null;
@@ -68,6 +67,65 @@ class CoreModel {
     const query = {
       text: `SELECT * FROM "${this.tableName}" WHERE "id" = $1`,
       values: [id]
+    }
+
+    // Puis on l'execute
+    database.query(query, (err, result) => {
+      // Si j'ai une erreur on stop et on déclenche le callback
+      // avec l'erreur
+      if (err) {
+        return callback(err, null);
+      }
+
+      // Si j'ai pas eu d'erreur
+      // On va préparer la donnée, on a une tableau d'objet simple
+      // On veut avoir une d'instances
+      // On récupère la première row
+      const row = result?.rows?.[0];
+      
+      // Si j'ai bien trouvé mon enregistrement
+      if (row) {
+        const datum = new this(row);
+        
+        // On appel la fonction de retour pour retourner le résultat
+        // au controller
+        return callback(null, datum);
+      }
+      // Si j'ai pas trouvé l'enregistrement
+      else {
+        // Je renvoie une erreur
+        return callback(new Error(this.name + ' not found'), null);
+      }
+    });
+  }
+
+  static findBy(params, callback) {
+
+    // On parcours les clefs de l'objet params
+    const tbKeysAndPlaceholder = []
+    const tbValues = [];
+
+    let placeholderIndex = 1;
+    for (let paramKey in params){
+      // On push la ligne générée par la clef du paramètre en cours
+      tbKeysAndPlaceholder.push(
+        // ex: "id" = $1
+        `"${paramKey}" = $${placeholderIndex}`
+      );
+      // Et on push le valeur du paramètre en cours
+      tbValues.push(params[paramKey]);
+
+      // On incrément la valeur du placeholder
+      placeholderIndex++;
+    }
+
+    const query = {
+      text: `
+      SELECT * 
+      FROM "${this.tableName}" 
+      WHERE 
+        ${tbKeysAndPlaceholder.join(' AND ')}`,
+      values: tbValues
     }
 
     // Puis on l'execute
