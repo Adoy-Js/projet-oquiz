@@ -2,7 +2,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 const sequelize = require('./database');
 
-const Answer = require('./models/Answer');
+const Level = require('./models/Level');
 
 // On test la connexion à la BDD
 sequelize.authenticate()
@@ -10,9 +10,9 @@ sequelize.authenticate()
   .then(() => {
     console.log('Connection has been established successfully.');
 
-    Answer.findOne()
-      .then((answer) => {
-        console.log("Answer :", answer.description)
+    Level.findAll()
+      .then((level) => {
+        console.log("Level :", level)
       });
   })
   // Si y'a eu une erreur quelle qu'elle soit, on passe dans le catch
