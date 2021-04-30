@@ -2,9 +2,12 @@ const dotenv = require('dotenv');
 dotenv.config();
 const sequelize = require('./database');
 
-const Question = require('./models/Question');
-const Tag = require('./models/Tag');
+// Ici le require n'a que le nom du dossier
+// Si je ne précise pas le nom du fichier, il va tout seul
+// tenter de récupérer le fichier index.js à l'interrieur du dossier
+const { User, Quiz, Tag, Question } = require('./models');
 
+/*
 // Récupération de la liste de toutes les questions
 Question.findAll()
 // Si ça s'est bien passé, j'ai donc mes questions
@@ -34,4 +37,23 @@ Tag.findByPk(2)
     name: error.name, 
     message: error.message
   });
+});
+*/
+
+//************* Test des relations **************/
+
+// Récupération d'un utilisateur ainsi que de ses quizzes
+User.findOne({ include: 'quizzes' }) // On utilise l'alias qu'on avait donné à la relation
+.then((user) => {
+  console.log(user);
+  // Si je veux récupérer tous les quizzes de cet utilisateur
+  // J'ai qu'a faire : 
+  // console.log('user.quizzes', user.quizzes);
+});
+
+
+// Récupération d'un utilisateur ainsi que de ses quizzes
+Quiz.findOne({ include: 'tags' }) // On utilise l'alias qu'on avait donné à la relation
+.then((quiz) => {
+  console.log(quiz);
 });
