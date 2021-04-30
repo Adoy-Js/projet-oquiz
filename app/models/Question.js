@@ -23,5 +23,3 @@ Question.init({
 
 // Puis on export pour pouvoir le require là ou on va l'instancier
 module.exports = Question;
-
-module.exports = Question;

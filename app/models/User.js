@@ -10,6 +10,7 @@ User.init({
   },
   password: {
     type: DataTypes.STRING,
+    allowNull: false,
   },
   firstname: {
     type: DataTypes.STRING,
