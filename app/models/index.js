@@ -51,6 +51,49 @@ Tag.belongsToMany(Quiz, {
   timestamps: false,
 });
 
+// Question <> Answer
+// 2 relation possible pour ces 2 entités, on va parler de la première
+// a savoir VALIDER dont une ONE-TO-ONE
+// TOne-To-One relationship, the hasOne and belongsTo associations are used together;
+Question.belongsTo(Answer, {
+  foreignKey: 'answer_id',
+  as: 'good_answer'
+});
+// Donc la réciproque
+Answer.hasOne(Question, {
+  foreignKey: 'answer_id',
+  as: 'question_answered'
+});
+
+// Question <> Answer
+// Deuxième relation plus simple
+// One-To-Many relationship, the hasMany and belongsTo associations are used together;
+// une question a des réponses
+// et une réponse dépend d'une question
+Question.hasMany(Answer, {
+  foreignKey: 'question_id',
+  as: 'answers'
+})
+// La réciproque
+Answer.belongsTo(Question, {
+  foreignKey: 'question_id',
+  as: 'question'
+})
+
+
+// Question <> Level
+// One-To-Many relationship, the hasMany and belongsTo associations are used together;
+// un niveau a plein de questions
+// et une question dépend d'un niveau
+Level.hasMany(Question, {
+  foreignKey: 'level_id',
+  as: 'questions'
+});
+// La réciproque
+Question.belongsTo(Level, {
+  foreignKey: 'level_id',
+  as: 'level'
+});
 
 module.exports = {
   User, Quiz, Tag, Question, Answer, Level

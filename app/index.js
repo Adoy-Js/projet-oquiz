@@ -53,7 +53,7 @@ User.findOne({ include: 'quizzes' }) // On utilise l'alias qu'on avait donné à
 
 
 // Récupération d'un utilisateur ainsi que de ses quizzes
-Quiz.findOne({ include: 'tags' }) // On utilise l'alias qu'on avait donné à la relation
+Quiz.findOne({ include: 'questions' }) // On utilise l'alias qu'on avait donné à la relation
 .then((quiz) => {
   console.log(quiz);
 });
