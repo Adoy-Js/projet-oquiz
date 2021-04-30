@@ -66,7 +66,6 @@ CREATE TABLE IF NOT EXISTS "user" (
 CREATE TABLE IF NOT EXISTS "quiz" (
   "id" serial PRIMARY KEY,
   "title" text NOT NULL,
-  "theme" text NULL,
   "description" text NULL,
   "user_id" integer NOT NULL REFERENCES "user" ("id")
 );

@@ -8,7 +8,8 @@ Answer.init({
   // La colonne description est un string
   // qui peut être nullable
   description: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: false,
   },
 }, {
   // Autre options du modeles

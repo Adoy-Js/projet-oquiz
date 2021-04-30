@@ -8,7 +8,8 @@ Tag.init({
   // La colonne name est un string
   // qui peut être nullable
   name: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: false,
   },
 }, {
   // Autre options du modeles
