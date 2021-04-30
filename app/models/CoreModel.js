@@ -274,6 +274,24 @@ class CoreModel {
       }
     });
   }
+
+  /**
+   * Fonction permettant de sauvegarder un enregistrement
+   * Si il existe déjà en BDD, il le met à jour sinon il le créé
+   * @param {Function} callback 
+   */
+  save(callback) {
+    // Si jamais l'enregistrement en cours a un ID
+    if (this._id) {
+      // Alors il devrait exister en BDD, dans ce cas la on met à jour
+      this.update(callback);
+    }
+    // Si il n'a pas d'id, on ne peut pas le retracer en BDD
+    else {
+      // Donc on l'insère
+      this.create(callback);
+    }
+  }
 }
 
 module.exports = CoreModel;

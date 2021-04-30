@@ -34,14 +34,21 @@ Quiz.findOne(1, (err, quiz) => {
 }); */
 
 const newQuiz = new Quiz({
-  id: 21,
   title: 'Mon super quiz titré',
   description: "C'est l'histoire d'un quiz ...",
   user_id: 1
 });
 
-newQuiz.delete((err) => {
+newQuiz.save((err, quizSaved) => {
   console.log({
     err,
   })
+  newQuiz.title = 'Mon Quiz updaté';
+
+  newQuiz.save((err, quizSaved) => {
+    console.log({
+      err,
+    })
+  });
 });
+
