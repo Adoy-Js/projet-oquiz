@@ -4,6 +4,10 @@
     <p class="lead">Inscrivez vous pour profiter des quizz !</p>
 </div>
 
+<% if (locals.error) {%>
+    <p class="error"><%= locals.error %></p>
+<% } %>
+
 <form action="/signup" method="POST" class="form-signin">
 
     <div class="form-label-group">

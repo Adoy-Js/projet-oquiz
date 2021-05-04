@@ -11,5 +11,3 @@ module.exports = (req, res, next) => {
   }
   return res.status(401).render('error/401');
 }
-
-test

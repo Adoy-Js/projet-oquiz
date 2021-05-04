@@ -45,6 +45,11 @@ const authController = {
     .catch((error) => {
       next(error);
     });
+  },
+
+  logoutAction:(req, res, next) =>{
+    req.session.userConnected = null;
+    res.redirect('/');
   }
 }
 
