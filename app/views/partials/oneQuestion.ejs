@@ -1,0 +1,14 @@
+<% console.log(locals) %>
+<div class="col-12">
+<label class="badge level level--<%= locals.level?.name?.toLowerCase() %>"><%= locals.level?.name %></label>
+<h4>
+    <%= locals.question %>
+</h4>
+<ul>
+    <% if (locals.answers && locals.answers.length ) {%>
+        <% answers.forEach((answer, index) => {%>
+            <li><%= index+1 %>. <%= answer.description %></li>
+        <% }); %>
+    <% } %>
+</ul>
+</div>
