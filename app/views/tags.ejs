@@ -5,24 +5,10 @@
 </div>
 
 <div class="row">
-
-    <div class="col-3 p-4 text-center">
-        <a class="btn btn-block btn-lg tag tag--animaux" href="#">
-            animaux
-        </a>
-    </div>
-
-    <div class="col-3 p-4 text-center">
-        <a class="btn btn-block btn-lg tag tag--gastronomie" href="#">
-            gastronomie
-        </a>
-    </div>
-
-    <div class="col-3 p-4 text-center">
-        <a class="btn btn-block btn-lg tag tag--géographie" href="#">
-            géographie
-        </a>
-    </div>
-
+    <%- 
+        include('partials/tagsList', {
+            tags: locals.tags
+        }) 
+    %>
 </div>
 <%- include('partials/footer') %>
