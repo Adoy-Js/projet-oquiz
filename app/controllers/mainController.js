@@ -16,6 +16,12 @@ const mainController = {
     });
     // Peut aussi s'écrire
     // .catch(next);
+  },
+  profilePage: (req, res, next) => {
+    res.render('profile');
+  },
+  adminPage: (req, res, next) => {
+    res.render('admin');
   }
 }
 
