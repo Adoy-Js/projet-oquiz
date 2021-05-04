@@ -26,6 +26,9 @@ app.use(session({
 
 app.use((req, res, next) => {
   res.locals.userConnected = req.session.userConnected || null;
+  if (res.locals.userConnected){
+    delete res.locals.userConnected.password;
+  }
   next();
 })
 // Ajout du router
