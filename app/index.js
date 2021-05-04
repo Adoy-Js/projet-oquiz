@@ -4,6 +4,7 @@ dotenv.config();
 const router = require('./router');
 
 const app = express()
+
 const port = process.env.PORT || 3000
 
 // On défini qu'on utilise le moteur de template EJS
