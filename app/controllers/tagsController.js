@@ -7,6 +7,19 @@ const tagsController = {
         tags
       });
     });
+  },
+  detailAction: (req, res) => {
+    // On récupère l'id du tag via les paramètres de route
+    const tagId = req.params.id;
+
+    Tag.findByPk(tagId, {
+      include: {
+        association: 'quizzes',
+        include: 'user'
+      }
+    }).then((tag) => {
+      res.render('tag', tag.dataValues);
+    });
   }
 }
 

@@ -18,17 +18,7 @@
         clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
 </div>
 
-
-<div class="card-deck row mb-3 text-center">
-    <% if (locals.quizzes && locals.quizzes.length) { %>
-        <% for (let quiz of quizzes){ %>
-            <div class="col-4 d-flex flex-column">
-                <%- include('partials/quizCard', quiz.dataValues) %>
-            </div>
-        <% } %>
-    <% } else { %>
-        <h2 style="margin: auto;">Aucun quiz à afficher</h2>
-    <% } %>
-</div>
-
+<%- include('partials/quizCardList', {
+    quizzes: locals.quizzes
+}) %>
 <%- include('partials/footer') %> 

@@ -12,5 +12,7 @@ router.get('/quiz/:id', quizController.detailAction);
 
 // Page de listing des tags
 router.get('/tags', tagsController.indexAction);
+// Page de détail d'un tag
+router.get('/tag/:id', tagsController.detailAction);
 
 module.exports = router;
