@@ -18,6 +18,9 @@ User.init({
   lastname: {
     type: DataTypes.STRING,
   },
+  role: {
+    type: DataTypes.STRING,
+  },
 }, {
   // Autre options du modeles
   sequelize, // On a besoin de donner l'instance de la connexion
