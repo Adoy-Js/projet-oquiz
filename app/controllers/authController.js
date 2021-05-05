@@ -147,6 +147,10 @@ const authController = {
           error: error.message
         });
     }
+  },
+  signOutAction: (req, res) => {
+    req.session.userConnected = null;
+    res.redirect('/');
   }
 }
 

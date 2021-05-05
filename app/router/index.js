@@ -30,6 +30,9 @@ router.get('/signup', authController.signUpPage);
 // Soumission de l'inscription
 router.post('/signup', authController.signUpAction);
 
+// Déconnexion
+router.get('/signout', authController.signOutAction);
+
 // Page de profil
 router.get('/profile', userMiddleware, mainController.profilePage);
 
