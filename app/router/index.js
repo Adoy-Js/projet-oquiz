@@ -6,7 +6,6 @@ const tagsController = require('../controllers/tagsController');
 const authController = require('../controllers/authController');
 const userMiddleware = require('../middlewares/userMiddleware');
 const adminMiddleware = require('../middlewares/adminMiddleware');
-const signupController = require('../controllers/signupController');
 
 // Page d'accueil
 router.get('/', mainController.indexAction);
@@ -39,12 +38,5 @@ router.get('/profile', userMiddleware, mainController.profilePage);
 
 // Page d'admin
 router.get('/admin', adminMiddleware, mainController.adminPage);
-
-// page pour s'inscrire
-router.get('/signup', signupController.signupPage);
-router.post('/signup', signupController.signupAction);
-
-//deconnexion
-router.get('/logout', authController.logoutAction);
 
 module.exports = router;

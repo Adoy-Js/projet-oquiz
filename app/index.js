@@ -6,7 +6,7 @@ const router = require('./router');
 
 const app = express()
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 5000
 
 // On défini qu'on utilise le moteur de template EJS
 app.set('view engine', 'ejs');
