@@ -20,8 +20,15 @@ router.get('/tag/:id', tagsController.detailAction);
 
 // Page de login
 router.get('/login', authController.loginPage);
+
 // Soumission du login
 router.post('/login', authController.loginAction);
+
+// Page de l'inscription
+router.get('/signup', authController.signUpPage);
+
+// Soumission de l'inscription
+router.post('/signup', authController.signUpAction);
 
 // Page de profil
 router.get('/profile', userMiddleware, mainController.profilePage);
