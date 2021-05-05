@@ -24,5 +24,11 @@
         <h2>Aucune question dans ce quiz</h2>
     <% } %>
 
+    <% if (!locals.userConnected){ %>
+        <div style="margin: auto; text-align: center;">
+            <h1>Tu veux répondre au quiz ?</h1>
+            <a href="/login">Connecte toi !</a>
+        </div>
+    <% } %>
 </div>
 <%- include('partials/footer') %>
