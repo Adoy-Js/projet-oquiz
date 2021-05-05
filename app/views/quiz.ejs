@@ -1,4 +1,7 @@
 <%- include('partials/header') %>
+<% if (locals.error) {%>
+<p class="error"><%= locals.error %></p>
+<% } %>
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
     <h2 class="h1 display-4"><%= locals.title %></h2>
     <p class="lead"><%= locals.description %></p>
@@ -17,18 +20,18 @@
 <div class="row">
 
     <% if (locals.questions && locals.questions.length ) {%>
-        <% for (let question of questions) { %>
-            <%- include('partials/oneQuestion', question.dataValues) %>
-        <% } %>
+    <% for (let question of questions) { %>
+    <%- include('partials/oneQuestion', question.dataValues) %>
+    <% } %>
     <% } else { %>
-        <h2>Aucune question dans ce quiz</h2>
+    <h2>Aucune question dans ce quiz</h2>
     <% } %>
 
     <% if (!locals.userConnected){ %>
-        <div style="margin: auto; text-align: center;">
-            <h1>Tu veux répondre au quiz ?</h1>
-            <a href="/login">Connecte toi !</a>
-        </div>
+    <div style="margin: auto; text-align: center;">
+        <h1>Tu veux répondre au quiz ?</h1>
+        <a href="/login">Connecte toi !</a>
+    </div>
     <% } %>
 </div>
 <%- include('partials/footer') %>
