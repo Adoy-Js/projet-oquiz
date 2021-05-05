@@ -17,6 +17,10 @@ const called = require('./called')
 // .catch((error) => {
 //   console.error("Une erreur est survenue", error);
 // });
+// Qu'on passe dans le then OU dans le catch, dans tout les cas, on passe dans le finally
+// .finally(() => {
+//   
+// });
 
 async function main() {
   try {

@@ -34,7 +34,7 @@ const authController = {
       // Puis on redirige vers la page d'accueil
       res.redirect('/');
     }
-    catch (e) {
+    catch (error) {
       return res.render('login', {
         error: error.message,
         email
