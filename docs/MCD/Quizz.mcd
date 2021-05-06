@@ -1,0 +1,14 @@
+CREER, 0N UTILISATEUR, 11 QUIZZ
+UTILISATEUR: _nom, prénom, _email, mot de passe
+VALIDER, 01 QUESTION, 01 REPONSE
+REPONSE: descriptionResp
+
+QUIZZ: titreQuizz, thème, descriptionQuizz
+COMPOSER, 0N QUIZZ, 11 QUESTION
+QUESTION: descriptionQuest, anecdote, wiki
+POSSEDER, 0N QUESTION, 11 REPONSE
+
+APPARTENIR, 0N TAG, 0N QUIZZ
+TAG: nomTag
+DEFINIR, 11 QUESTION, 0N NIVEAU
+NIVEAU: nomNiveau
