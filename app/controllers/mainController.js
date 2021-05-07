@@ -1,3 +1,4 @@
+const { localsName } = require('ejs');
 const { Quiz } = require('../models')
 
 const mainController = {

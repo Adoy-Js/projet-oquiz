@@ -12,6 +12,7 @@ router.get('/', mainController.indexAction);
 
 // Page de détail d'un quiz
 router.get('/quiz/:id', quizController.detailAction);
+router.post('/quiz/:id', quizController.playAction);
 
 // Page de listing des tags
 router.get('/tags',  tagsController.indexAction);
@@ -38,5 +39,6 @@ router.get('/profile', userMiddleware, mainController.profilePage);
 
 // Page d'admin
 router.get('/admin', adminMiddleware, mainController.adminPage);
+
 
 module.exports = router;
