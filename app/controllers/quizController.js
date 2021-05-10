@@ -6,90 +6,75 @@ const quizController = {
     // Récupération de l'id du quiz
     const quizId = req.params.id;
 
-    if (res.locals.userConnected) {
-      try {
-        const quiz = await Quiz.findByPk(quizId, {
-          include: [
-            "user",
-            "tags",
-            {
-              // J'ai besoin de questions mais avec plus de détail
-              // Je précise donc la relation
-              association: "questions",
-              // et je rajoute ce dont j'ai besoin dans CETTE relation
-              include: ["answers", "level"],
-            },
-          ],
-        });
+    try {
+      const quiz = await Quiz.findByPk(quizId, {
+        include: [
+          "user",
+          "tags",
+          {
+            // J'ai besoin de questions mais avec plus de détail
+            // Je précise donc la relation
+            association: "questions",
+            // et je rajoute ce dont j'ai besoin dans CETTE relation
+            include: ["answers", "level"],
+          },
+        ],
+      });
 
-        if (!quiz) {
-          throw new Error("Le quiz n'existe pas");
-        }
+      if (!quiz) {
+        throw new Error("Le quiz n'existe pas");
+      }
 
+      if (req.session.userConnected) {
         res.render("play_quiz", quiz.dataValues);
-      } catch (error) {
-        res.render("quiz", {
-          error: error.message,
-        });
-      }
-    } else {
-      try {
-        const quiz = await Quiz.findByPk(quizId, {
-          include: [
-            "user",
-            "tags",
-            {
-              // J'ai besoin de questions mais avec plus de détail
-              // Je précise donc la relation
-              association: "questions",
-              // et je rajoute ce dont j'ai besoin dans CETTE relation
-              include: ["answers", "level"],
-            },
-          ],
-        });
-
-        if (!quiz) {
-          throw new Error("Le quiz n'existe pas");
-        }
-
+      } else {
         res.render("quiz", quiz.dataValues);
-      } catch (error) {
-        res.render("quiz", {
-          error: error.message,
-        });
       }
+    } catch (error) {
+      res.render("quiz", {
+        error: error.message,
+      });
     }
   },
 
   playAction: async (req, res, next) => {
+    // je commence avec un score de 0
+    let score = 0;
 
-    let resultcompteur = 0;
+    // je recupère le quiz
+    const quizId = req.params.id;
+    const quiz = await Quiz.findByPk(quizId, {
+      include: { all: true, nested: true },
+    });
+    // je récupère les valeurs du formulaire (il s'agit donc des reponses de l'utilisateur)
+    const userResponses = req.body;
 
+    // je verifie pour chaque question
+    for (const question of quiz.questions) {
+     
+      // que la reponse associée
+      // Exemple pour récupérer la reponse du formulaire pour la question 58 on écrit :
+      // on peut acceder à une propriété d'un objet un peu comme on accede à l'index d'un tableau grâce aux []
+      // userResponses["response_58"]
+      // le 10 en 2eme parametre c'est la base (ou radix) pour dire que ce sont des ,nombre décimaux que l'on veut convertir de string vers int
+      const userResponseId = parseInt(
+        userResponses[`${question.id}`],
+        10
+      );
 
-    console.log(req.body);
+      // correspond à la bonne reponse à la question
+      const questionResponseId = question.good_answer.id;
 
-    for (let answer in req.body) {
-      try {
-        const question = await Question.findOne({
-          where: { id : Number(answer) },
-        });
-        const dataAnswer = await Answer.findOne({
-          where: { id : question.answer_id },
-        });
-        goodAnswer = dataAnswer.dataValues.description;
-        if(req.body[answer] == goodAnswer){
-          
-          resultcompteur++
-        }
-      } catch (error) {
-        next(error);
+      console.log(userResponseId, questionResponseId)
+
+      if (userResponseId === questionResponseId) {
+        // si oui alors on rajoute un point
+        score++;
       }
     }
-    res.render('resultQuiz', {
-      resultat : resultcompteur
-    })
-  },
 
+    res.send(`Vous avez obtenu ${score} points`);
+  },
 };
 
 module.exports = quizController;
