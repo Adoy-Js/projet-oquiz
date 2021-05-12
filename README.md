@@ -1,7 +1,5 @@
 # OQuiz
 
-=======
-
 ## Jour 10 - Parcours, Sprint 3
 
 ### Pouvoir répondre aux questions d’un quiz
@@ -79,7 +77,6 @@ CETTE FONCTIONNALITÉ NE DOIT ÊTRE ACCESSIBLE QU'AUX ADMINS !
 
 ---
 
->>>>>>> 66101c0496ccc58ce332a1601f2f848fb5a125b0
 ## Jour 5, Atelier, Sprint 1
 
 Fini les tests ! Maintenant qu'on a des super modèles, on va brancher tout ça dans une archi Express !
