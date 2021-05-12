@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 const { localsName } = require('ejs');
+=======
+>>>>>>> 66101c0496ccc58ce332a1601f2f848fb5a125b0
 const { Quiz } = require('../models')
 
 const mainController = {

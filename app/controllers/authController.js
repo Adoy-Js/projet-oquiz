@@ -41,7 +41,10 @@ const authController = {
       });
     }
   },
+<<<<<<< HEAD
   
+=======
+>>>>>>> 66101c0496ccc58ce332a1601f2f848fb5a125b0
   signUpAction: async (req, res, next) => {
     // Je veux récupérer toutes ces propriétés : 
     //    lastname, firstname, email, password, passwordConfirm
