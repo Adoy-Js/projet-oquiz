@@ -41,24 +41,7 @@ const authController = {
       });
     }
   },
-<<<<<<< HEAD
-  
-=======
->>>>>>> 66101c0496ccc58ce332a1601f2f848fb5a125b0
   signUpAction: async (req, res, next) => {
-    // Je veux récupérer toutes ces propriétés : 
-    //    lastname, firstname, email, password, passwordConfirm
-    // Depuis l'objet req.body
-    // Je pourrais faire
-    // const lastname = req.body.lastname
-    // const firstname = req.body.firstname
-    // Ca marche mais c'est chiant y'a beaucoup à écrire on peut simplifier
-
-    // On déstructure req.body, à gauche on choisis ce qu'on veut récupérer
-    // Et ça va créer une variable par propriété ( avec le même nom ) et avec
-    // la portée qu'on aura choisi
-    // C'est la décomposition d'un objet, le destructuring
-    // cf https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#d%C3%A9composer_un_objet
     const {
       lastname,
       firstname,
@@ -86,15 +69,11 @@ const authController = {
         throw new Error('Les mots de passe ne correspondent pas');
       }
 
-      // Vérification de l'adresse email via un regexe chopé sur le net
-      // On cherche pas à le comprendre, on fait confiance
+      // Vérification de l'adresse email via un regexe 
       let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       if (!re.test(email.toLowerCase())) {
         throw new Error('L\'adresse email n\'est pas bien structurée');
       }
-
-      // Si on est arrivé jusqu'ici, c'est qu'on a pas throw d'erreur, donc notre formulaire
-      // est correct
 
       // On vérifie si l'utilisateur n'existe pas
       const user = await User.findOne({ where: { email: email } })

@@ -1,10 +1,8 @@
 <%- include('partials/header') %>
-<<<<<<< HEAD
 <% if (locals.error) {%>
 <p class="error"><%= locals.error %></p>
 <% } %>
-=======
->>>>>>> 66101c0496ccc58ce332a1601f2f848fb5a125b0
+
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
     <h2 class="h1 display-4"><%= locals.title %></h2>
     <p class="lead"><%= locals.description %></p>
@@ -23,7 +21,7 @@
 <div class="row">
 
     <% if (locals.questions && locals.questions.length ) {%>
-<<<<<<< HEAD
+
     <% for (let question of questions) { %>
     <%- include('partials/oneQuestion', question.dataValues) %>
     <% } %>
@@ -36,7 +34,7 @@
         <h1>Tu veux répondre au quiz ?</h1>
         <a href="/login">Connecte toi !</a>
     </div>
-=======
+
         <% for (let question of questions) { %>
             <%- include('partials/oneQuestion', question.dataValues) %>
         <% } %>
@@ -49,7 +47,7 @@
             <h1>Tu veux répondre au quiz ?</h1>
             <a href="/login">Connecte toi !</a>
         </div>
->>>>>>> 66101c0496ccc58ce332a1601f2f848fb5a125b0
+
     <% } %>
 </div>
 <%- include('partials/footer') %>

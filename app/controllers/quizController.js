@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const { Error } = require("sequelize");
 const { Quiz, Answer, Question } = require("../models");
 
@@ -79,31 +78,3 @@ const quizController = {
 };
 
 module.exports = quizController;
-=======
-const { Quiz } = require('../models');
-
-const quizController = {
-  detailAction: (req, res) => {
-    // Récupération de l'id du quiz
-    const quizId = req.params.id;
-
-    Quiz.findByPk(quizId, {
-      include: [
-        'user',
-        'tags',
-        { // J'ai besoin de questions mais avec plus de détail
-          // Je précise donc la relation
-          association: 'questions',
-          // et je rajoute ce dont j'ai besoin dans CETTE relation
-          include: ['answers', 'level']
-        }
-      ]
-    }).then((quiz) => {
-      // On envoie le quiz directement dans le détail
-      res.render('quiz', quiz.dataValues);
-    });
-  }
-}
-
-module.exports = quizController;
->>>>>>> 66101c0496ccc58ce332a1601f2f848fb5a125b0

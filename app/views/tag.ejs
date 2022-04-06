@@ -1,6 +1,5 @@
 <%- include('partials/header') %>
 
-<<<<<<< HEAD
 <% if (locals.error) {%>
 <p class="error"><%= locals.error %></p>
 <% } %>
@@ -10,12 +9,7 @@
     <h2 class="h1 display-4"><%= locals.name %></h2>
 </div>
 <%- include('partials/quizCardList', {
-=======
-<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    <h2 class="h1 display-4"><%= locals.name %></h2>
-</div>
-    <%- include('partials/quizCardList', {
->>>>>>> 66101c0496ccc58ce332a1601f2f848fb5a125b0
+
         quizzes: locals.quizzes
     });
     %>
